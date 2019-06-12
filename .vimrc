@@ -14,10 +14,13 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
-Plugin 'hushicai/fecs.vim.git'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'Yggdroot/indentLine'
 Plugin 'mattn/emmet-vim'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'posva/vim-vue'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'w0rp/ale'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -60,21 +63,17 @@ set hlsearch
 set nowrap
 set cc=90
 set backspace=indent,eol,start
+set omnifunc=ale#completion#OmniFunc
 
 " NERDTree config
 nnoremap <silent> <F2> :NERDTreeToggle<CR>
 
-" FECS config
-" 不建议首次打开文件时进行检查
-let g:syntastic_check_on_open = 0
-" `:wq`时不进行检查，注意这跟`:w`不一样
-let g:syntastic_check_on_wq = 0
-" let g:syntastic_mode_map = {'mode': 'passive'} 
-nmap <silent> <F3> :SyntasticCheck<CR>
-let g:syntastic_javascript_checkers = ['fecs']
-let g:syntastic_javascript_fecs_args = "--reporter=baidu"
-let g:syntastic_error_symbol = "✗"
-let g:syntastic_warning_symbol = "⚠"
+" Enable completion where available.
+" This setting must be set before ALE is loaded.
+"
+" You should not turn this setting on if you wish to use ALE as a completion
+" source for other completion plugins, like Deoplete.
+let g:ale_completion_enabled = 1
 
 " emmet
 let g:user_emmet_mode='n'    "only enable normal mode functions.
