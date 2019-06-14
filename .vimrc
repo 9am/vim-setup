@@ -21,6 +21,8 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'posva/vim-vue'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'w0rp/ale'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -65,8 +67,11 @@ set cc=90
 set backspace=indent,eol,start
 set omnifunc=ale#completion#OmniFunc
 
-" NERDTree config
-nnoremap <silent> <F2> :NERDTreeToggle<CR>
+" config
+nmap <silent> <F2> :NERDTreeToggle<CR>
+nmap <silent> <C-i> <Plug>(ale_go_to_definition)
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " Enable completion where available.
 " This setting must be set before ALE is loaded.
@@ -74,6 +79,11 @@ nnoremap <silent> <F2> :NERDTreeToggle<CR>
 " You should not turn this setting on if you wish to use ALE as a completion
 " source for other completion plugins, like Deoplete.
 let g:ale_completion_enabled = 1
+" Write this in your vimrc file
+let g:ale_lint_on_text_changed = 'never'
+" You can disable this option too
+" if you don't want linters to run on opening a file
+let g:ale_lint_on_enter = 0
 
 " emmet
 let g:user_emmet_mode='n'    "only enable normal mode functions.
@@ -81,3 +91,6 @@ let g:user_emmet_mode='inv'  "enable all functions, which is equal to
 let g:user_emmet_mode='a'    "enable all function in all mode.
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
+
+" airline
+let g:airline_theme='molokai'
